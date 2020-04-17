@@ -37,6 +37,7 @@ function showCart() {
     // DONE: Create a TD for the delete link, quantity,  and the item
     // DONE: Add the TR to the TBODY and each of the TD's to the TR
     var newTdDelete = document.createElement('td');
+
     newTdDelete.textContent = 'X';
     newTdDelete.id = cart.items[i].product;
     newTdDelete.className = 'remove';
@@ -49,9 +50,22 @@ function showCart() {
     var newTdItem = document.createElement('td');
     newTdItem.textContent = cart.items[i].product;
     newTr.appendChild(newTdItem);
+
+
+    var newImage = document.createElement('img');
+    for (var j = 0; j < Product.allProducts.length; j++){
+      if (cart.items[i].product === Product.allProducts[j].name){
+        newImage.src = Product.allProducts[j].filePath;
+        newImage.height = '100';
+        newImage.width = '100';
+      }
+    }
+    var newTdImage = document.createElement('td');
+    newTdImage.appendChild(newImage);
+    newTr.appendChild(newTdImage);
     targetBody.appendChild(newTr);
   }
-};
+}
 
 function removeItemFromCart(event) {
 
