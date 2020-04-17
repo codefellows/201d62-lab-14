@@ -7,18 +7,28 @@ var Cart = function(items) {
 };
 
 Cart.prototype.addItem = function(product, quantity) {
-  // TODO: Fill in this instance method to create a new CartItem and add it to this.items
+  // DONE: Fill in this instance method to create a new CartItem and add it to this.items
   var newCartItem = new CartItem(product, quantity);
   // push to this.items
   this.items.push(newCartItem);
 };
 
 Cart.prototype.saveToLocalStorage = function() {
-  // TODO: Fill in this instance method to save the contents of the cart to localStorage
+  // DONE: Fill in this instance method to save the contents of the cart to localStorage
+  // stringify cart
+  var stringifiedCart = JSON.stringify(this.items);
+  // set it to local storage
+  localStorage.setItem('cart', stringifiedCart);
 };
 
 Cart.prototype.removeItem = function(item) {
-  // TODO: Fill in this instance method to remove one item from the cart.
+  // DONE: Fill in this instance method to remove one item from the cart.
+  var cartItems = JSON.parse(localStorage.getItem('cart'));
+  // var theItem = cartItems[item];
+
+  cartItems.pop(item);
+  localStorage.clear();
+  localStorage.setItem('cart', JSON.stringify(cartItems));
   // Note: You will have to decide what kind of parameter to pass in here!
 };
 
